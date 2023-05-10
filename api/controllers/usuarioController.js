@@ -1,6 +1,6 @@
-const UsuarioService = require("../services/usuarioService.js");
+const UsuarioService = require("../services/usuarioService");
 
-const usuario = new UsuarioService();
+const usuarioService = new UsuarioService();
 
 class UsuarioController {
   static async cadastrar(req, res) {

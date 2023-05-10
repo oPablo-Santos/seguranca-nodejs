@@ -4,7 +4,7 @@ const uuid = require("uuid");
 
 class UsuarioService {
   async cadastrar(dto) {
-    const usuario = await database.usuarios.findOne({
+    const usuario = await database.usuario.findOne({
       where: {
         email: dto.email,
       },
@@ -17,7 +17,7 @@ class UsuarioService {
     try {
       const senhaHash = await hash(dto.senha, 8);
 
-      const novoUsuario = await database.usuarios.create({
+      const novoUsuario = await database.usuario.create({
         id: uuid.v4(),
         nome: dto.nome,
         email: dto.email,
@@ -31,13 +31,13 @@ class UsuarioService {
   }
 
   async buscarTodosUsuarios() {
-    const usuarios = await database.usuarios.findAll();
+    const usuarios = await database.usuario.findAll();
 
     return usuarios;
   }
 
   async buscarUsuarioPorId(id) {
-    const usuario = await database.usuarios.findOne({
+    const usuario = await database.usuario.findOne({
       where: {
         id: id,
       },
@@ -69,7 +69,7 @@ class UsuarioService {
     await this.buscarUsuarioPorId(id);
 
     try {
-      await database.usuarios.destroy({
+      await database.usuario.destroy({
         where: {
           id: id,
         },
